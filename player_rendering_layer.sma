@@ -98,7 +98,7 @@ public OnPlayerSpawn_Post(id)
 public OnPlayerPreThink(id)
 {
 	new Float:gametime = get_gametime();
-	if (gametime < g_NextUpdate[id])
+	if (gametime < g_NextUpdate[id]) // performance improve
 		return;
 
 	for (new i = 0; i < MAX_LAYERS; i++)
