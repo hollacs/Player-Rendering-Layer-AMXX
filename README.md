@@ -7,12 +7,20 @@
 
 ## set_rendering 有什麼情況下會發生衝突?
 **舉個例子:**
+
 喪屍模式有凍結彈, 當你被凍結被會使用 set_rendering 為玩家加上一層像冰面的 淺藍色光, 凍結解除後重設 rendering
+
 你的喪屍有血性暴走, 使用時會為自身加上一層紅色光, 暴走結束後重設 rendering
+
 當以上兩個情況一起發生時, 就會出現衝突
+
 譬如 你正在暴走時 被凍結住, 然後在凍結完之前暴走就使用結束, 那就會出現 凍結的藍色光提前消失的情況
+
 另外一種情況就是一樣正在暴走時被凍結住, 在你暴走未完結之前 凍結就解除了, 暴走的發光效果會提前消失, 正確的狀況應該會是凍結解除後還是 紅色光, 等到暴走真正結束後才消失
+
 (當然這只是舉個例, 因為可能你會寫被凍結時就取消暴走的狀態)
+
+
 再來就是你的特殊感染者設定了身體發出基礎綠色光, 如果你再碰到上面兩種情況就會很麻煩
 
 ## 使用說明:
@@ -33,31 +41,39 @@ native render_pop(id, pop_index, const class[]="");
 // 移除所有層級
 native render_clear(id);
 ```
-## 注意
-這個 API 會自動在玩家重生時 移除所有層級
-層級會根據 render_push 的先後決定層級的優先度
-預設最多只能有 16 個層級, 如果想增加請修改 sma 裡的 MAX_LAYERS
+
+### 注意
+- 這個 API 會自動在玩家重生時 移除所有層級
+- 層級會根據 render_push 的先後決定層級的優先度
+- 預設最多只能有 16 個層級, 如果想增加請修改 sma 裡的 MAX_LAYERS
 
 ### 以下是針對以上說的情況而寫的範例
 首先, 設定特殊感染者的基礎綠色光
+
 在玩家成為特殊感染者時 加入以下代碼:
+
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{0.0, 255.0, 0.0}, kRenderNormal, 16.0, 0.0, "base");
 ```
 
 在冰彈凍結玩家時 加入以下代碼:
+
 以下假設凍結時間是 3 秒
+
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{0.0, 200.0, 200.0}, kRenderNormal, 16.0, 3.0, "freeze");
 ```
 
 在玩家使用暴走時 加入以下代碼:
+
 以下假設暴走時間是 10 秒
+
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{255.0, 0.0, 0.0}, kRenderNormal, 16.0, 10.0, "sprint");
 ```
 
 在一些情況中, 你可能想提前或手動取消暴走效果, 可以使用以下代碼:
+
 ```sourcepawn
 render_pop(id, -1, "sprint");
 ```
