@@ -77,8 +77,9 @@ render_push(id, kRenderFxGlowShell, Float:{255.0, 0.0, 0.0}, kRenderNormal, 16.0
 ```sourcepawn
 render_pop(id, -1, "sprint");
 ```
-### TODO (將會加入的功能):
-讓 render_push 可以指定層級的優先度
+
+## TODO (將會加入的功能):
+- 讓 render_push 可以指定層級的優先度
 
 ---
 
