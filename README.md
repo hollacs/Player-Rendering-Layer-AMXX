@@ -55,7 +55,7 @@ native render_clear(id);
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{0.0, 255.0, 0.0}, kRenderNormal, 16.0, 0.0, "base");
 ```
-
+<br>
 在冰彈凍結玩家時 加入以下代碼:
 
 以下假設凍結時間是 3 秒
@@ -63,7 +63,7 @@ render_push(id, kRenderFxGlowShell, Float:{0.0, 255.0, 0.0}, kRenderNormal, 16.0
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{0.0, 200.0, 200.0}, kRenderNormal, 16.0, 3.0, "freeze");
 ```
-
+<br>
 在玩家使用暴走時 加入以下代碼:
 
 以下假設暴走時間是 10 秒
@@ -71,7 +71,7 @@ render_push(id, kRenderFxGlowShell, Float:{0.0, 200.0, 200.0}, kRenderNormal, 16
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, Float:{255.0, 0.0, 0.0}, kRenderNormal, 16.0, 10.0, "sprint");
 ```
-
+<br>
 在一些情況中, 你可能想提前或手動取消暴走效果, 可以使用以下代碼:
 
 ```sourcepawn
