@@ -225,6 +225,7 @@ ClearRendering(id)
 	for (new i = 0; i < MAX_LAYERS; i++)
 	{
 		g_Rendering[id][i][render_zindex] = 0;
+		g_Rendering[id][i][render_class][0] = 0;
 	}
 
 	set_entvar(id, var_renderfx, kRenderFxNone);
