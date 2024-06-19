@@ -129,7 +129,7 @@ PushRendering(id, fx, Float:color[3], mode, Float:amount, Float:duration, const 
 		{
 			zindex = g_Rendering[id][i][render_zindex];
 
-			if (index2 == -1 && equal(class, g_Rendering[id][index][render_class]))
+			if (index2 == -1 && equal(class, g_Rendering[id][i][render_class]))
 				index2 = i;
 		}
 		else if (index == -1)
