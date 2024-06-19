@@ -20,7 +20,7 @@ new Float:g_NextUpdate[MAX_PLAYERS + 1];
 
 public plugin_init()
 {
-	register_plugin("Player Rendering Layer", "0.1", "holla");
+	register_plugin("Player Rendering Layer", "0.1.1", "holla");
 
 	RegisterHam(Ham_Spawn, "player", "OnPlayerSpawn_Post", 1);
 }
