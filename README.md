@@ -60,7 +60,7 @@ When a player becomes a special infected, add the following code: (zindex is 0)
 render_push(id, kRenderFxGlowShell, {0, 255, 0}, kRenderNormal, 16, 0.0, "base", 0);
 ```
 
-2. Setting up the blue glow when a zombie hit by a ice bomb: (assuming the duration is 3.0 seconds)
+2. Setting up the blue glow when a zombie hit by a ice bomb: 
 
 Assuming the freeze duration is 3 seconds, use:
 
@@ -68,7 +68,7 @@ Assuming the freeze duration is 3 seconds, use:
 render_push(id, kRenderFxGlowShell, {0, 200, 200}, kRenderNormal, 16, 3.0, "freeze", 10);
 ```
 
-3. Setting up the red glow when the zombie is in berserk mode: (assuming the duration is 10.0 seconds)
+3. Setting up the red glow when the zombie is in berserk mode: 
 
 Assuming the berserk mode lasts 10 seconds, add: (zindex is 1)
 
