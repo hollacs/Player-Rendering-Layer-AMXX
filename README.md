@@ -1,23 +1,21 @@
-## Managing set_rendering in AMXX: A Conflict Resolution System
+## Managing set_rendering in AMXX: A Layer System
 
 Have you ever encountered difficulties managing multiple plugins that simultaneously use `set_rendering` in AMXX? 
-I've made a managing system to deal with this issue.
+I've made a layer system to deal with this issue.
 
-### When Does set_rendering Conflict Occur?
+### When Do set_rendering Conflicts Happen?
 
-Let's consider an example:
+Imagine a zombie game mode where players can be frozen by an ice bomb. When frozen, the game applies a light blue glow effect using set_rendering. After the freeze wears off, the glow disappears.
 
-In a zombie mode, there's an ice bomb that freezes players. When frozen, the game applies a light blue rendering effect using `set_rendering`. After the freeze is lifted, the rendering is reset.
+Now, let’s say your zombies also have a berserk mode that adds a red glow to their bodies. This berserk effect is also managed using set_rendering. The problem arises when both effects happen at the same time:
 
-Now, imagine your zombies have a berserk mode that adds a red glow to their bodies. When activated, this effect is also managed using `set_rendering`. However, conflicts arise when both effects occur simultaneously.
+If a player is in berserk mode and gets frozen, the blue glow vanishes as soon as the berserk mode ends (even if the freeze is still active).
 
-For instance:
-1. If a player is in berserk mode and gets frozen, the blue effect will disappear as soon as the berserk mode ends (even if the freeze still remains)
-2. Conversely, if a player is frozen while in berserk mode and the freeze is lifted before the berserk mode completes, the red glow effect might vanish too early. Ideally, it should persist until the berserk mode truly ends.
+Conversely, if a player is frozen while in berserk mode and the freeze ends before the berserk mode, the red glow might disappear too early. Ideally, it should stay until the berserk mode truly ends.
 
-(Note that this is just an illustrative example; your actual implementation may handle these scenarios differently.)
+(Note: This is just an example; your actual game mode may handle these situations differently.)
 
-Additionally, if you have special infected characters emitting a base green glow, encountering the situations described above can become quite problematic.
+Additionally, if you have special infected characters emitting a base green glow, managing all these effects can become tricky.
 
 ## Usage Instructions:
 
@@ -54,7 +52,7 @@ native render_get_data(id, index, data[RenderingData]);
 
 1. Setting up the base green glow for special infected characters:
 
-When a player becomes a special infected, add the following code: (zindex is 0)
+  When a player becomes a special infected, add the following code: (zindex is 0)
 
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, {0, 255, 0}, kRenderNormal, 16, 0.0, "base", 0);
@@ -62,7 +60,7 @@ render_push(id, kRenderFxGlowShell, {0, 255, 0}, kRenderNormal, 16, 0.0, "base",
 
 2. Setting up the blue glow when a zombie hit by a ice bomb: 
 
-Assuming the freeze duration is 3 seconds, use:
+  Assuming the freeze duration is 3 seconds, use:
 
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, {0, 200, 200}, kRenderNormal, 16, 3.0, "freeze", 10);
@@ -70,7 +68,7 @@ render_push(id, kRenderFxGlowShell, {0, 200, 200}, kRenderNormal, 16, 3.0, "free
 
 3. Setting up the red glow when the zombie is in berserk mode: 
 
-Assuming the berserk mode lasts 10 seconds, add: (zindex is 1)
+  Assuming the berserk mode lasts 10 seconds, add: (zindex is 1)
 
 ```sourcepawn
 render_push(id, kRenderFxGlowShell, {255, 0, 0}, kRenderNormal, 16, 10.0, "berserk", 1);
