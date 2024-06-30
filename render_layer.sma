@@ -131,7 +131,7 @@ public client_PreThink(id)
 
 	for (new i = 0; i < MAX_LAYERS; i++)
 	{
-		// filter empty layer and  permanent duration
+		// filter empty layer and permanent duration
 		if (!g_Rendering[id][i][render_index] || g_Rendering[id][i][render_until] == 0.0)
 			continue;
 		
@@ -153,10 +153,10 @@ PushRendering(id, fx=kRenderFxNone, color[3]={0, 0, 0}, mode=kRenderNormal, amou
 	new ii = -1;
 	new index = -1;
 
-	for (new i = 0; i < MAX_LAYERS; i++)
+	// class is not empty
+	if (class[0])
 	{
-		// class is not empty
-		if (class[0])
+		for (new i = 0; i < MAX_LAYERS; i++)
 		{
 			// find the layer index of this class name
 			if (equal(g_Rendering[id][i][render_class], class))
