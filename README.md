@@ -12,7 +12,7 @@ In a zombie mode, there's an ice bomb that freezes players. When frozen, the gam
 Now, imagine your zombies have a berserk mode that adds a red glow to their bodies. When activated, this effect is also managed using `set_rendering`. However, conflicts arise when both effects occur simultaneously.
 
 For instance:
-1. If a player is in berserk mode and gets frozen, the blue freeze effect might prematurely disappear before the berserk mode ends.
+1. If a player is in berserk mode and gets frozen, the blue effect will disappear as soon as the berserk mode ends (even if the freeze still remains)
 2. Conversely, if a player is frozen while in berserk mode and the freeze is lifted before the berserk mode completes, the red glow effect might vanish too early. Ideally, it should persist until the berserk mode truly ends.
 
 (Note that this is just an illustrative example; your actual implementation may handle these scenarios differently.)
