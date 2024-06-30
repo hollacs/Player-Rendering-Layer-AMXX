@@ -57,23 +57,23 @@ native render_get_data(id, index, data[RenderingData]);
 When a player becomes a special infected, add the following code: (zindex is 0)
 
 ```sourcepawn
-render_push(id, kRenderFxGlowShell, Float:{0.0, 255.0, 0.0}, kRenderNormal, 16.0, 0.0, "base", 0);
+render_push(id, kRenderFxGlowShell, {0, 255, 0}, kRenderNormal, 16, 0.0, "base", 0);
 ```
 
-2. Handling the freeze effect during ice bomb usage: (zindex is 10)
+2. Setting up the blue glow when a zombie hit by a ice bomb: (assuming the duration is 3.0 seconds)
 
 Assuming the freeze duration is 3 seconds, use:
 
 ```sourcepawn
-render_push(id, kRenderFxGlowShell, Float:{0.0, 200.0, 200.0}, kRenderNormal, 16.0, 3.0, "freeze", 10);
+render_push(id, kRenderFxGlowShell, {0, 200, 200}, kRenderNormal, 16, 3.0, "freeze", 10);
 ```
 
-3. Managing the berserk mode glow:
+3. Setting up the red glow when the zombie is in berserk mode: (assuming the duration is 10.0 seconds)
 
 Assuming the berserk mode lasts 10 seconds, add: (zindex is 1)
 
 ```sourcepawn
-render_push(id, kRenderFxGlowShell, Float:{255.0, 0.0, 0.0}, kRenderNormal, 16.0, 10.0, "berserk", 1);
+render_push(id, kRenderFxGlowShell, {255, 0, 0}, kRenderNormal, 16, 10.0, "berserk", 1);
 ```
 
 4. To manually cancel the berserk effect in certain situations:
