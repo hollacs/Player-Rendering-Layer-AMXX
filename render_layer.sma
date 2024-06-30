@@ -168,7 +168,6 @@ PushRendering(id, fx=kRenderFxNone, color[3]={0, 0, 0}, mode=kRenderNormal, amou
 		}
 	}
 
-	// no valid insert point
 	if (ii == -1)
 	{
 		for (new i = 0; i < MAX_LAYERS; i++)
@@ -201,6 +200,8 @@ PushRendering(id, fx=kRenderFxNone, color[3]={0, 0, 0}, mode=kRenderNormal, amou
 	// set duration
 	if (duration > 0.0)
 		g_Rendering[id][ii][render_until] = get_gametime() + duration;
+	else
+		g_Rendering[id][ii][render_until] = 0.0
 
 	// set class name
 	copy(g_Rendering[id][ii][render_class], charsmax(g_Rendering[][][render_class]), class);
@@ -226,27 +227,9 @@ PushRendering(id, fx=kRenderFxNone, color[3]={0, 0, 0}, mode=kRenderNormal, amou
 	if (zindex < max_zindex)
 		return ii;
 
-	/* not needed anymore, because the current index is always the biggest one
-	// if there is another layer having the same zindex
-	if (zindex == max_index)
-	{
-		// check the index of these layers
-		// if one of them is higher than the current index, stop there
-		for (new i = 0; i < MAX_LAYERS; i++)
-		{
-			if (i != ii &&
-				g_Rendering[id][i][render_index] && 
-				g_Rendering[id][i][render_zindex] == zindex &&
-				g_Rendering[id][i][render_index] > index)
-			{
-				return 1;
-			}
-		}
-	}
-	*/
-
 	g_Current[id] = ii;
 	SetRendering(id, ii);
+
 	return ii;
 }
 
