@@ -50,7 +50,7 @@ native render_get_data(id, index, data[RenderingData]);
 - This API automatically removes all layers when a player respawns.
 - By default, there's a limit of 16 layers; modify `MAX_LAYERS` in your .sma file to increase this limit.
 
-### Example Scenarios Based on the Situations Mentioned Above:
+## Example Scenarios Based on the Situations Mentioned Above:
 
 1. Setting up the base green glow for special infected characters:
 
